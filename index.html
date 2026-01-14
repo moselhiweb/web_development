@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Ahmed Mohamed Moselhy - Web Developer & Engineering Student">
+    <title>Ahmed Mohamed Moselhy | Web Developer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+    <div class="cursor-bg-glow" data-cursor-glow></div>
+
+    <!-- Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#hero" class="logo">AMM<span>.</span></a>
+
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link btn-prominent">Contact</a>
+            </div>
+
+            <div class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </div>
+
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay">
+        <div class="mobile-menu-content">
+            <div class="close-menu-btn"><i class="fas fa-times"></i></div>
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#skills" class="mobile-link">Skills</a>
+            <a href="#projects" class="mobile-link">Projects</a>
+            <a href="#experience" class="mobile-link">Experience</a>
+            <a href="#services" class="mobile-link">Services</a>
+            <a href="#contact" class="mobile-link">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content fade-in-up">
+                <span class="greeting">Hello, I'm</span>
+                <h1 class="hero-name">Ahmed Mohamed <br><span class="highlight-text">Moselhy</span></h1>
+                <h2 class="hero-role">Web Developer & Engineering Student</h2>
+                <p class="hero-intro">
+                    A motivated engineering student and web developer focused on building clean, responsive, and
+                    practical web solutions that enhance learning and user experience.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-visual fade-in-up">
+                <!-- Abstract Decorative Element representing Code/Structure -->
+                <!-- Hero Image -->
+                <div class="hero-img-box" id="hero-img-box">
+                    <div class="circle-border"></div>
+                    <img src="profile.jpg" alt="Ahmed Mohamed Moselhy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <h2 class="section-title fade-in">About <span class="highlight-text">Me</span></h2>
+            <div class="about-content">
+                <div class="about-image fade-in-left">
+                    <div class="img-placeholder" id="about-img-box">
+                        <img src="profile.jpg" alt="Ahmed Mohamed Moselhy">
+                    </div>
+                </div>
+                <div class="about-text fade-in-right">
+                    <p>
+                        I am an <strong>Engineering student specializing in Energy Engineering</strong> with
+                        approximately one year of hands-on experience in web development. I focus on building
+                        structured, user-friendly websites using core web technologies such as HTML, CSS, and
+                        JavaScript.
+                    </p>
+                    <p>
+                        I enjoy challenging myself by transforming traditional study materials, including PDFs, into
+                        interactive and professional web platforms that support effective learning. My goal is to bridge
+                        the gap between complex engineering concepts and accessible digital experiences.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section">
+        <div class="container">
+            <h2 class="section-title fade-in">My <span class="highlight-text">Skills</span></h2>
+
+            <div class="skills-grid">
+                <!-- Programming Languages -->
+                <div class="skill-category fade-in-up">
+                    <h3 class="category-title"><i class="fas fa-code"></i> Languages</h3>
+                    <div class="skill-tags">
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">C++</span>
+                    </div>
+                </div>
+
+                <!-- Web Development -->
+                <div class="skill-category fade-in-up" style="transition-delay: 0.1s;">
+                    <h3 class="category-title"><i class="fas fa-laptop-code"></i> Web Development</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Responsive Design</span>
+                        <span class="tag">UI Layout & Structure</span>
+                        <span class="tag">Front-End Logic</span>
+                        <span class="tag">Git & GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured <span class="highlight-text">Projects</span></h2>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <article class="project-card fade-in-up">
+                    <div class="project-content">
+                        <div class="project-icon"><i class="fas fa-question-circle"></i></div>
+                        <h3 class="project-title">Online Quiz Website</h3>
+                        <p class="project-desc">
+                            An interactive quiz platform designed to test users with dynamic questions and improve
+                            engagement through immediate feedback and score tracking.
+                        </p>
+                        <div class="project-tech">
+                            <span>HTML</span><span>CSS</span><span>JS</span>
+                        </div>
+                        <a href="https://moselhiweb.github.io/Quiz/" target="_blank" class="project-link">
+                            View Live <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card fade-in-up" style="transition-delay: 0.1s;">
+                    <div class="project-content">
+                        <div class="project-icon"><i class="fas fa-network-wired"></i></div>
+                        <h3 class="project-title">Network Fundamentals Quiz</h3>
+                        <p class="project-desc">
+                            A professional quiz application featuring 25 network fundamentals questions, advanced
+                            animations, and a fully responsive mobile-first design.
+                        </p>
+                        <div class="project-tech">
+                            <span>UI Design</span><span>Content Structuring</span>
+                        </div>
+                        <a href="https://moselhiweb.github.io/Quiz_2/" target="_blank" class="project-link">
+                            View Live <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="project-content">
+                        <div class="project-icon"><i class="fas fa-user-lock"></i></div>
+                        <h3 class="project-title">Animated Login Interface</h3>
+                        <p class="project-desc">
+                            A highly interactive login page showcasing advanced CSS animations, glowing effects, and a
+                            modern dark UI design.
+                        </p>
+                        <div class="project-tech">
+                            <span>HTML</span><span>CSS</span><span>JS</span>
+                        </div>
+                        <a href="https://moselhiweb.github.io/logein/" target="_blank" class="project-link">
+                            View Live <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Experience</h2>
+            <div class="timeline fade-in-up">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Approx. 1 Year</div>
+                    <div class="timeline-content">
+                        <h3>Web Developer</h3>
+                        <span class="timeline-company">Self-Learning / Freelance</span>
+                        <ul class="timeline-list">
+                            <li>Built responsive websites using HTML, CSS, and JavaScript.</li>
+                            <li>Improved usability and layout structure for educational content.</li>
+                            <li>Applied best practices in clean code and front-end optimization.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <i class="fas fa-code service-icon"></i>
+                    <h3>Front-End Dev</h3>
+                    <p>Building clean, responsive, and pixel-perfect websites from scratch.</p>
+                </div>
+                <div class="service-card fade-in-up" style="transition-delay: 0.1s;">
+                    <i class="fas fa-mobile-alt service-icon"></i>
+                    <h3>Responsive Design</h3>
+                    <p>Ensuring your site looks perfect on all devices, from mobile to desktop.</p>
+                </div>
+                <div class="service-card fade-in-up" style="transition-delay: 0.2s;">
+                    <i class="fas fa-book-reader service-icon"></i>
+                    <h3>Educational Platforms</h3>
+                    <p>Digitizing study materials into interactive web experiences.</p>
+                </div>
+                <div class="service-card fade-in-up" style="transition-delay: 0.3s;">
+                    <i class="fas fa-pencil-ruler service-icon"></i>
+                    <h3>UI Optimization</h3>
+                    <p>Improving structure and layout for better user experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Objective -->
+    <section class="section objective-section fade-in">
+        <div class="container">
+            <div class="objective-box">
+                <i class="fas fa-quote-left quote-icon"></i>
+                <p class="objective-text">
+                    To grow as a professional web developer by gaining real-world experience, working on impactful
+                    projects, and combining engineering thinking with modern web technologies to create efficient and
+                    user-focused digital solutions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Get In <span class="highlight-text">Touch</span></h2>
+            <div class="contact-wrapper">
+                <div class="contact-info fade-in-left">
+                    <h3>Let's Connect</h3>
+                    <p>I'm currently available for freelance work and collaboration.</p>
+
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/182g3qi3Ph/" target="_blank" class="social-btn facebook"
+                            aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/a7med._.moselhi" target="_blank" class="social-btn instagram"
+                            aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <form class="contact-form fade-in-right" action="#" onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <input type="text" id="name" required placeholder=" ">
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" required placeholder=" ">
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" required placeholder=" "></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-btn">Send Message <i
+                            class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Ahmed Mohamed Moselhy. All Rights Reserved.</p>
+            <a href="#hero" class="back-to-top" aria-label="Back to top">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>

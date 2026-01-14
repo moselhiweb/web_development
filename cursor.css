@@ -1,0 +1,43 @@
+/* =========================================
+   11. CUSTOM CURSOR
+   ========================================= */
+.cursor-dot,
+.cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-color);
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--primary-color);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+/* Hide cursor on touch devices */
+@media (max-width: 1024px) {
+
+    .cursor-dot,
+    .cursor-outline {
+        display: none;
+    }
+}
+
+/* Hover state expansion */
+body.hovering .cursor-outline {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(99, 102, 241, 0.1);
+    border-color: transparent;
+}
