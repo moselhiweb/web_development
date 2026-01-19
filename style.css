@@ -46,20 +46,7 @@
     --bg-pattern: none;
 }
 
-#bg-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    opacity: 1;
-    /* Always visible */
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-}
 
-/* [data-theme="light"] #bg-canvas rule removed as it is now global */
 
 * {
     margin: 0;
@@ -311,58 +298,9 @@ img {
     font-weight: 400;
 }
 
-.typing-text::after {
-    content: '|';
-    animation: blink 1s infinite;
-}
 
-@keyframes blink {
 
-    0%,
-    100% {
-        opacity: 1;
-    }
 
-    50% {
-        opacity: 0;
-    }
-}
-
-/* Particles Background */
-.particles-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
-    pointer-events: none;
-}
-
-.particle {
-    position: absolute;
-    background: var(--primary-color);
-    border-radius: 50%;
-    opacity: 0.3;
-    animation: rise 15s infinite ease-in;
-}
-
-@keyframes rise {
-    0% {
-        transform: translateY(100vh) scale(0);
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 0.5;
-    }
-
-    100% {
-        transform: translateY(-20vh) scale(1);
-        opacity: 0;
-    }
-}
 
 .hero-intro {
     font-size: 1.1rem;
@@ -458,33 +396,7 @@ img {
     }
 }
 
-@keyframes img-pulse {
 
-    0%,
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
-        border-color: var(--bg-surface);
-    }
-
-    50% {
-        transform: scale(1.03);
-        box-shadow: 0 0 50px rgba(99, 102, 241, 0.5), 0 0 20px rgba(236, 72, 153, 0.3);
-        border-color: rgba(99, 102, 241, 0.5);
-    }
-}
-
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-20px);
-    }
-}
 
 /* =========================================
    5. ABOUT SECTION
