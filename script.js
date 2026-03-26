@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ------------------------------------------------------------------
-    // 7. Interactive Magnetic Vortex Background
+    // 7. Calm Constellation Background
     // ------------------------------------------------------------------
     const canvas = document.getElementById('bg-canvas');
     if (canvas) {
@@ -243,28 +243,33 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        let mouse = { x: null, y: null, radius: 250 };
+        let mouse = { x: null, y: null, radius: 150 };
+
         window.addEventListener('mousemove', (e) => {
             mouse.x = e.clientX;
             mouse.y = e.clientY;
+        });
+
+        // Clear mouse position when it leaves the window
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
         });
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
+                this.size = Math.random() * 2 + 0.5; // Smaller, softer dots
 
-                // Physics properties
-                this.density = (Math.random() * 20) + 1;
-                this.vx = (Math.random() - 0.5) * 1.5;
-                this.vy = (Math.random() - 0.5) * 1.5;
-                this.friction = 0.98;
+                // Gentle, steady drift
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
             }
 
             draw() {
                 const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-                ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)';
+                ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.4)';
 
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -272,50 +277,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             update() {
-                // 1. Magnetic Attraction & Vortex
-                if (mouse.x != null) {
+                // Interactive gentle repulsion around mouse
+                if (mouse.x != null && mouse.y != null) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < mouse.radius) {
-                        // Attraction force
+                        const forceDirectionX = dx / distance;
+                        const forceDirectionY = dy / distance;
                         const force = (mouse.radius - distance) / mouse.radius;
-                        const directionX = (dx / distance) * force * 1.5;
-                        const directionY = (dy / distance) * force * 1.5;
-
-                        this.vx += directionX;
-                        this.vy += directionY;
-
-                        // Vortex Logic (Centripetal Swirl)
-                        const swirlStrength = force * 0.8;
-                        this.vx += (dy / distance) * swirlStrength;
-                        this.vy -= (dx / distance) * swirlStrength;
+                        // Very subtle push away
+                        this.x -= forceDirectionX * force * 1.5;
+                        this.y -= forceDirectionY * force * 1.5;
                     }
                 }
 
-                this.vx *= this.friction;
-                this.vy *= this.friction;
-
-                // Subtle floaty drift
-                this.vx += (Math.random() - 0.5) * 0.05;
-                this.vy += (Math.random() - 0.5) * 0.05;
-
+                // Continual drift
                 this.x += this.vx;
                 this.y += this.vy;
 
-                // Wrap
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
+                // Wrap around edges to maintain continuous flow
+                if (this.x > canvas.width + 10) this.x = -10;
+                if (this.x < -10) this.x = canvas.width + 10;
+                if (this.y > canvas.height + 10) this.y = -10;
+                if (this.y < -10) this.y = canvas.height + 10;
             }
         }
 
         function init() {
             particlesArray = [];
-            let numberOfParticles = 800; // Slightly lower for constellation performance
-            if (window.innerWidth > 1000) numberOfParticles = 1200;
+            // Optimize particle count based on screen size, max out at ~200
+            let numberOfParticles = Math.min(Math.floor((canvas.width * canvas.height) / 12000), 200);
 
             for (let i = 0; i < numberOfParticles; i++) {
                 particlesArray.push(new Particle());
@@ -326,20 +319,37 @@ document.addEventListener('DOMContentLoaded', () => {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             const lineColor = isDark ? '255, 255, 255' : '0, 0, 0';
 
-            // Connect Mouse to particles
-            if (mouse.x != null) {
-                for (let a = 0; a < particlesArray.length; a++) {
-                    let dx = mouse.x - particlesArray[a].x;
-                    let dy = mouse.y - particlesArray[a].y;
+            for (let a = 0; a < particlesArray.length; a++) {
+                // Connect particles to each other
+                for (let b = a + 1; b < particlesArray.length; b++) {
+                    let dx = particlesArray[a].x - particlesArray[b].x;
+                    let dy = particlesArray[a].y - particlesArray[b].y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
 
-                    if (distance < 150) {
-                        let opacity = 1 - (distance / 150);
-                        ctx.strokeStyle = `rgba(${lineColor}, ${opacity * 0.2})`;
+                    if (distance < 100) {
+                        let opacity = 1 - (distance / 100);
+                        ctx.strokeStyle = `rgba(${lineColor}, ${opacity * 0.15})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+
+                // Connect particles to mouse
+                if (mouse.x != null && mouse.y != null) {
+                    let mdx = mouse.x - particlesArray[a].x;
+                    let mdy = mouse.y - particlesArray[a].y;
+                    let mDistance = Math.sqrt(mdx * mdx + mdy * mdy);
+
+                    if (mDistance < mouse.radius) {
+                        let opacity = 1 - (mDistance / mouse.radius);
+                        ctx.strokeStyle = `rgba(${lineColor}, ${opacity * 0.3})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
-                        ctx.moveTo(mouse.x, mouse.y);
-                        ctx.lineTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(mouse.x, mouse.y);
                         ctx.stroke();
                     }
                 }
@@ -356,10 +366,15 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(animate);
         }
 
+        // Handle resize with a small debounce
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            init();
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                init();
+            }, 200);
         });
 
         init();
